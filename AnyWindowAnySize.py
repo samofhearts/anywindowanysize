@@ -67,6 +67,78 @@ def plusOnePercent():
         win = pygetwindow.getWindowsWithTitle(selectedWindow)[0]
         win.size = (int(win.width + (win.width * 0.01)), int(win.height + (win.height * 0.01)))
 
+def moveUp():
+    global clicked
+    global heightEntry
+    global widthEntry
+    global processList
+    global optionList
+    selectedWindow = clicked.get()
+
+    if (len(pygetwindow.getWindowsWithTitle(selectedWindow))) > 1:
+        for each in processList:
+            if each.title == str(selectedWindow):
+                for wind in pygetwindow.getWindowsWithTitle(selectedWindow):
+                    if wind.left == each.left and wind.top == each.top and wind.width == each.width and wind.height == each.height and wind.title == each.title:
+                        wind.move(0,-10)
+    else:
+        win = pygetwindow.getWindowsWithTitle(selectedWindow)[0]
+        win.move(0,-10)
+
+def moveDown():
+    global clicked
+    global heightEntry
+    global widthEntry
+    global processList
+    global optionList
+    selectedWindow = clicked.get()
+
+    if (len(pygetwindow.getWindowsWithTitle(selectedWindow))) > 1:
+        for each in processList:
+            if each.title == str(selectedWindow):
+                for wind in pygetwindow.getWindowsWithTitle(selectedWindow):
+                    if wind.left == each.left and wind.top == each.top and wind.width == each.width and wind.height == each.height and wind.title == each.title:
+                        wind.move(0,10)
+    else:
+        win = pygetwindow.getWindowsWithTitle(selectedWindow)[0]
+        win.move(0,10)
+
+def moveLeft():
+    global clicked
+    global heightEntry
+    global widthEntry
+    global processList
+    global optionList
+    selectedWindow = clicked.get()
+
+    if (len(pygetwindow.getWindowsWithTitle(selectedWindow))) > 1:
+        for each in processList:
+            if each.title == str(selectedWindow):
+                for wind in pygetwindow.getWindowsWithTitle(selectedWindow):
+                    if wind.left == each.left and wind.top == each.top and wind.width == each.width and wind.height == each.height and wind.title == each.title:
+                        wind.move(-10,0)
+    else:
+        win = pygetwindow.getWindowsWithTitle(selectedWindow)[0]
+        win.move(-10,0)
+
+def moveRight():
+    global clicked
+    global heightEntry
+    global widthEntry
+    global processList
+    global optionList
+    selectedWindow = clicked.get()
+
+    if (len(pygetwindow.getWindowsWithTitle(selectedWindow))) > 1:
+        for each in processList:
+            if each.title == str(selectedWindow):
+                for wind in pygetwindow.getWindowsWithTitle(selectedWindow):
+                    if wind.left == each.left and wind.top == each.top and wind.width == each.width and wind.height == each.height and wind.title == each.title:
+                        wind.move(10,0)
+    else:
+        win = pygetwindow.getWindowsWithTitle(selectedWindow)[0]
+        win.move(10,0)
+
 
 ## Get Process Options
 ##print(pygetwindow.getAllWindows())
@@ -135,6 +207,18 @@ minusPercentButton = Button(master, bg='white', text="Minus 1 Percent", command 
 
 ## +1% Button
 plusPercentButton = Button(master, bg='white', text="Plus 1 Percent", command = plusOnePercent).grid(row=12, column=2, sticky=E)
+
+## move up
+moveUpButton = Button(master, bg='white', text="Up", command = moveUp).grid(row=13, column=2, sticky=W)
+
+## move down
+moveDownButton = Button(master, bg='white', text="Down", command = moveDown).grid(row=13, column=2, sticky=E)
+
+## move left
+moveLeftButton = Button(master, bg='white', text="Left", command = moveLeft).grid(row=14, column=2, sticky=W)
+
+## move right
+moveRightButton = Button(master, bg='white', text="Right", command = moveRight).grid(row=14, column=2, sticky=E)
 
 ## Apply Button
 applyButton = Button(master, bg='white', text="Apply",command = applyIt).grid(row=15, columnspan=5)
